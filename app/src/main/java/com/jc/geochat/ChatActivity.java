@@ -1,4 +1,4 @@
-package com.zv.geochat;
+package com.jc.geochat;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

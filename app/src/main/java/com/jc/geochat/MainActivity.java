@@ -1,4 +1,4 @@
-package com.zv.geochat;
+package com.jc.geochat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

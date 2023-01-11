@@ -1,4 +1,4 @@
-package com.zv.geochat;
+package com.jc.geochat;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

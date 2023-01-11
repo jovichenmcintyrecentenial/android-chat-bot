@@ -1,4 +1,4 @@
-package com.zv.geochat.notification;
+package com.jc.geochat.notification;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -7,8 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.zv.geochat.ChatActivity;
-import com.zv.geochat.R;
+import com.jc.geochat.ChatActivity;
 
 public class NotificationDecorator {
 

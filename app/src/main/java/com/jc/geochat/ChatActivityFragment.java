@@ -1,4 +1,4 @@
-package com.zv.geochat;
+package com.jc.geochat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.zv.geochat.service.ChatService;
+import com.jc.geochat.service.ChatService;
 
 public class ChatActivityFragment extends Fragment {
     private static final String TAG = "ChatActivityFragment";
@@ -30,7 +30,7 @@ public class ChatActivityFragment extends Fragment {
         btnJoinChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Sending to Chat Service: Join", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Sending to Chat Service: Join.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 joinChat(userName);
             }

@@ -1,4 +1,4 @@
-package com.zv.geochat.service;
+package com.jc.geochat.service;
 
 import android.app.Activity;
 import android.app.ActivityManager;

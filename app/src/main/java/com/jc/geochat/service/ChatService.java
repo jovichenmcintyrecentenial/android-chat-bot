@@ -1,4 +1,4 @@
-package com.zv.geochat.service;
+package com.jc.geochat.service;
 
 import android.app.NotificationManager;
 import android.app.Service;
@@ -9,7 +9,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
 
-import com.zv.geochat.notification.NotificationDecorator;
+import com.jc.geochat.notification.NotificationDecorator;
 
 public class ChatService extends Service {
     private static final String TAG = "ChatService";
