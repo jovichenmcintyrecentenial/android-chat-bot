@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnJoinChat" />
 
+
         <Button
             android:text="Leave Chat"
             android:layout_width="match_parent"
@@ -50,5 +51,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnReceiveMessage" />
+
+
+        <Button
+            android:text="Generate Message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGenerateMessage" />
+
+
+        <Button
+            android:text="Stop Service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnStopServiceMessage" />
+
+        <TextView
+            android:id="@+id/serviceMessageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+
     </LinearLayout>
 </RelativeLayout>

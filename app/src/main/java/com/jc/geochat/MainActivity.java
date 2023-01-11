@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        loadUserNameFromPreferences();
+        EditText edtUserName = (EditText) findViewById(R.id.edtUserName);
+        edtUserName.setText(Utils.getUserNameFromPreferences(this));
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
                 EditText edtUserName = (EditText) findViewById(R.id.edtUserName);
                 String userName = edtUserName.getText().toString();
-                saveToPreferences(userName);
+                Utils.saveToPreferences(getApplicationContext(),userName);
 
                 Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
                 startActivity(intent);
@@ -61,19 +63,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void loadUserNameFromPreferences() {
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String userName = prefs.getString(Constants.KEY_USER_NAME, "User Name");
-
-        EditText edtUserName = (EditText) findViewById(R.id.edtUserName);
-        edtUserName.setText(userName);
-    }
-
-    private void saveToPreferences(String userName) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(Constants.KEY_USER_NAME,userName);
-        editor.apply();
-    }
 }

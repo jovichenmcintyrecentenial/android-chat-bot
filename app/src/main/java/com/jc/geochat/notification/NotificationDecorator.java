@@ -19,8 +19,12 @@ public class NotificationDecorator {
         this.context = context;
         this.notificationMgr = notificationManager;
     }
-
     public void displaySimpleNotification(String title, String contentText) {
+        displaySimpleNotification( title,  contentText, 0);
+    }
+
+    public void displaySimpleNotification(String title, String contentText, int notificationID) {
+
         Intent intent = new Intent(context, ChatActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -29,7 +33,6 @@ public class NotificationDecorator {
 
         // notification message
         try {
-
 
             Notification noti = new Notification.Builder(context)
                     .setSmallIcon(android.R.drawable.ic_dialog_info)
@@ -40,7 +43,7 @@ public class NotificationDecorator {
                     .build();
 
             noti.flags |= Notification.FLAG_AUTO_CANCEL;
-            notificationMgr.notify(0, noti);
+            notificationMgr.notify(notificationID, noti);
         } catch (IllegalArgumentException e) {
             Log.e(TAG, e.getMessage());
         }
