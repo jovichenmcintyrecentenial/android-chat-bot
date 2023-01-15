@@ -22,7 +22,10 @@ public class ChatService extends Service {
     public static final int CMD_SEND_MESSAGE = 30;
     public static final int CMD_RECEIVE_MESSAGE = 40;
     public static final int CMD_GENERATE_MESSAGE = 50;
+    public static final int CONNECT_ERROR_59 = 59;
     public static final int CMD_STOP_SERVICE_MESSAGE = 60;
+    public static final int SEND_RANDOM_ID = 70;
+
     public static final String KEY_MESSAGE_TEXT = "message_text";
     public static final String KEY_USER_NAME = "user_name";
     public static final String BROADCAST_ID = "com.jc.chatboot.message";
@@ -114,6 +117,14 @@ public class ChatService extends Service {
             String testMessage = "Simulated Message";
             notificationDecorator.displaySimpleNotification("New message...: "+ testUser, testMessage);
             sendMessage(testMessage);
+        }
+        else if (command == CONNECT_ERROR_59) {
+            final String studentIdLast2Digits = (String) data.get(Constants.KEY_ID_LAST_DIGITS);
+            notificationDecorator.displaySimpleNotification("Error", "Connect Error: "+studentIdLast2Digits);
+        }
+        else if (command == SEND_RANDOM_ID) {
+            final int randomNumber = data.getInt(Constants.GENERATED_RANDOM_NUMBER_KEY);
+            notificationDecorator.displaySimpleNotification("Random Number", "ChatService Received: "+randomNumber);
         }
         else if (command == CMD_STOP_SERVICE_MESSAGE) {
             String testMessage = "Simulated Message";

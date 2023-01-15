@@ -93,6 +93,26 @@ public class ChatActivityFragment extends Fragment {
                 stopServiceMessage();
             }
         });
+
+        Button btnGenerateNumber = (Button) v.findViewById(R.id.btnGenerateNumber);
+        btnGenerateNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "New Message Arrived...", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                generateRandomID();
+            }
+        });
+
+        Button btnSendError = (Button) v.findViewById(R.id.btnSendError);
+        btnSendError.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "New Message Arrived...", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                sendError();
+            }
+        });
         final TextView textView = (TextView) v.findViewById(R.id.serviceMessageTextView);
 
         // Create the BroadcastReceiver
@@ -111,6 +131,7 @@ public class ChatActivityFragment extends Fragment {
         edtMessage = (EditText) v.findViewById(R.id.edtMessage);
 
         loadUserNameFromPreferences();
+
 
         return v;
     }
@@ -138,9 +159,29 @@ public class ChatActivityFragment extends Fragment {
         getActivity().startService(intent);
     }
 
+    private void generateRandomID(){
+
+        Bundle data = new Bundle();
+        int random = (int)(Math.random() * 1000000 + 1);
+        data.putInt(ChatService.MSG_CMD, ChatService.SEND_RANDOM_ID);
+        data.putInt(Constants.GENERATED_RANDOM_NUMBER_KEY, random);
+        Intent intent = new Intent(getContext(), ChatService.class);
+        intent.putExtras(data);
+        getActivity().startService(intent);
+    }
+
     private void leaveChat(){
         Bundle data = new Bundle();
         data.putInt(ChatService.MSG_CMD, ChatService.CMD_LEAVE_CHAT);
+        Intent intent = new Intent(getContext(), ChatService.class);
+        intent.putExtras(data);
+        getActivity().startService(intent);
+    }
+
+    private void sendError(){
+        Bundle data = new Bundle();
+        data.putInt(ChatService.MSG_CMD, ChatService.CONNECT_ERROR_59);
+        data.putString(Constants.KEY_ID_LAST_DIGITS, "59");
         Intent intent = new Intent(getContext(), ChatService.class);
         intent.putExtras(data);
         getActivity().startService(intent);

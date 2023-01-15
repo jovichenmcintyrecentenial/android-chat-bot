@@ -66,6 +66,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnStopServiceMessage" />
 
+        <Button
+            android:text="Send Random ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGenerateNumber" />
+
+
+        <Button
+            android:text="Send Connect Error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSendError" />
+
         <TextView
             android:id="@+id/serviceMessageTextView"
             android:layout_width="match_parent"
