@@ -164,7 +164,7 @@ public class ChatActivityFragment extends Fragment {
     private void generateRandomID(){
 
         Bundle data = new Bundle();
-        int random = (int)(Math.random() * 1000000 + 1);
+        int random = (int)(Math.random() * 10000000 + 1);
         data.putInt(ChatService.MSG_CMD, ChatService.SEND_RANDOM_ID);
         data.putInt(Constants.GENERATED_RANDOM_NUMBER_KEY, random);
         Intent intent = new Intent(getContext(), ChatService.class);
