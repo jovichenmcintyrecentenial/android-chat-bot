@@ -150,6 +150,7 @@ public class ChatActivityFragment extends Fragment {
         getActivity().startService(intent);
     }
 
+    //call generate message command
     private void generateMessage(String userName){
         Bundle data = new Bundle();
         data.putInt(ChatService.MSG_CMD, ChatService.CMD_GENERATE_MESSAGE);
@@ -159,6 +160,7 @@ public class ChatActivityFragment extends Fragment {
         getActivity().startService(intent);
     }
 
+    //generate a random 7 digit id and send to service
     private void generateRandomID(){
 
         Bundle data = new Bundle();
@@ -178,6 +180,7 @@ public class ChatActivityFragment extends Fragment {
         getActivity().startService(intent);
     }
 
+    //call send a error command on service and pass 2 last digit of student id
     private void sendError(){
         Bundle data = new Bundle();
         data.putInt(ChatService.MSG_CMD, ChatService.CONNECT_ERROR_59);
@@ -186,6 +189,8 @@ public class ChatActivityFragment extends Fragment {
         intent.putExtras(data);
         getActivity().startService(intent);
     }
+
+    //call stop service command and pass 2 last digit of student id
 
     private void stopServiceMessage(){
         Bundle data = new Bundle();

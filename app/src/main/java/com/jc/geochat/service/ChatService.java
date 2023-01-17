@@ -127,13 +127,12 @@ public class ChatService extends Service {
             notificationDecorator.displaySimpleNotification("Random Number", "ChatService Received: "+randomNumber);
         }
         else if (command == CMD_STOP_SERVICE_MESSAGE) {
-            String testMessage = "Simulated Message";
             final String studentIdLast2Digits = (String) data.get(Constants.KEY_ID_LAST_DIGITS);
             sendMessage("ChatBot Stopped: "+studentIdLast2Digits);
             notificationDecorator.displaySimpleNotification("Shutdown", "ChatBot Stopped: "+studentIdLast2Digits);
         }
         else if (command == CMD_GENERATE_MESSAGE) {
-
+            //generate message in sequence with a 1 second delay between each
             new Thread(new Runnable() {
                 @Override
                 public void run() {
