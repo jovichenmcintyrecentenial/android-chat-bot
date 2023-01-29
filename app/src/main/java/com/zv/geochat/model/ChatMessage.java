@@ -1,9 +1,56 @@
 package com.zv.geochat.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class ChatMessage {
     private String id;
     private String userName;
     private String body;
+    private int datetime;
+
+    public int getDatetime() {
+        return datetime;
+    }
+
+    public String getFormattedDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY");
+
+        Date currentDate = new Date(System.currentTimeMillis());
+        //get phone timezone
+        sdf.setTimeZone(TimeZone.getDefault());
+        String formattedDate = sdf.format(currentDate);
+        return formattedDate;
+    }
+
+    public boolean isOlderThan24Hours(){
+        Date nowDate = new Date(System.currentTimeMillis());
+        Date dateOfMessage = new Date(System.currentTimeMillis());
+
+        //calculate hours elapse
+        long secs = (nowDate.getTime() - dateOfMessage.getTime())/1000;
+        int hours = (int)(secs / 3600);
+
+        if(hours>24){
+            return true;
+        }
+        return false;
+    }
+
+    public String getGetTime(){
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+
+        Date currentDate = new Date(datetime);
+        //get phone timezone
+        sdf.setTimeZone(TimeZone.getDefault());
+        String formattedDate = sdf.format(currentDate);
+        return formattedDate;
+    }
+
+    public void setDatetime(int datetime) {
+        this.datetime = datetime;
+    }
 
     public ChatMessage() {
     }

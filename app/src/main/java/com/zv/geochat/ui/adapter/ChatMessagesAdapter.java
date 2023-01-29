@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.zv.geochat.R;
 import com.zv.geochat.model.ChatMessage;
 
+import java.util.Date;
 import java.util.List;
 
 import co.dift.ui.SwipeToAction;
@@ -24,6 +25,8 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public class ChatMessageViewHolder extends SwipeToAction.ViewHolder<ChatMessage> {
         public TextView userName;
         public TextView chatMessageBody;
+        public TextView id;
+        public TextView dateTime;
         public ImageView imageView;
 
         public ChatMessageViewHolder(View v) {
@@ -31,6 +34,8 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             userName = (TextView) v.findViewById(R.id.userName);
             chatMessageBody = (TextView) v.findViewById(R.id.body);
+            dateTime = (TextView) v.findViewById(R.id.datetime);
+            id = (TextView) v.findViewById(R.id.id);
             imageView = (ImageView) v.findViewById(R.id.image);
         }
     }
@@ -64,6 +69,11 @@ public class ChatMessagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ChatMessageViewHolder vh = (ChatMessageViewHolder) holder;
         vh.userName.setText(item.getUserName());
         vh.chatMessageBody.setText(item.getBody());
+
+
+
+        vh.dateTime.setText(item.isOlderThan24Hours()?item.getFormattedDate():item.getGetTime());
+        vh.id.setText("ID: "+item.getId());
         vh.data = item;
     }
 }
