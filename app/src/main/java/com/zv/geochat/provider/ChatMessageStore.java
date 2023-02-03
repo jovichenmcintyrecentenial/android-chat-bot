@@ -84,7 +84,7 @@ public class ChatMessageStore {
 			chatMessage.setId(c.getString(indexId));
 			chatMessage.setUserName(c.getString(indexUserName));
 			chatMessage.setBody(c.getString(indexMsgBody));
-			chatMessage.setDatetime(c.getLong(indexChatDate));
+			chatMessage.setDatetime(c.getInt(indexChatDate));
 
 			list.add(chatMessage);
 
@@ -117,7 +117,7 @@ public class ChatMessageStore {
 		Log.v(TAG, "{db} +++++ add to db.... " + chatMessage);
 
 		//get system current time
-		long dateStamp = System.currentTimeMillis();
+		int dateStamp = (int)(System.currentTimeMillis()/1000);
 
 		ContentValues cv = new ContentValues();
 		cv.put(GeoChatProviderMetadata.ChatMessageTableMetaData.USER_NAME, chatMessage.getUserName());

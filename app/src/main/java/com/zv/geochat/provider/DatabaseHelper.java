@@ -48,7 +48,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
                 + ChatMessageTableMetaData._ID + " INTEGER PRIMARY KEY,"
                 + ChatMessageTableMetaData.USER_NAME + " TEXT,"
                 + ChatMessageTableMetaData.MSG_BODY + " TEXT,"
-                + ChatMessageTableMetaData.CHAT_MESSAGE_DATE + " BIGINT"
+                + ChatMessageTableMetaData.CHAT_MESSAGE_DATE + " INTEGER"
                 + ");");
     }
 }

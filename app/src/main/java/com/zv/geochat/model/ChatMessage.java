@@ -8,16 +8,16 @@ public class ChatMessage {
     private String id;
     private String userName;
     private String body;
-    private long datetime;
+    private int datetime;
 
-    public long getDatetime() {
+    public int getDatetime() {
         return datetime;
     }
 
     public String getFormattedDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY");
 
-        Date currentDate = new Date(datetime);
+        Date currentDate = new Date(datetime*1000L);
         //get phone timezone
         sdf.setTimeZone(TimeZone.getDefault());
         String formattedDate = sdf.format(currentDate);
@@ -26,7 +26,7 @@ public class ChatMessage {
 
     public boolean isOlderThan24Hours(){
         Date nowDate = new Date(System.currentTimeMillis());
-        Date dateOfMessage = new Date(datetime);
+        Date dateOfMessage = new Date(datetime*1000L);
 
         //calculate hours elapse
         long secs = (nowDate.getTime() - dateOfMessage.getTime())/1000;
@@ -48,7 +48,7 @@ public class ChatMessage {
         return formattedDate;
     }
 
-    public void setDatetime(long datetime) {
+    public void setDatetime(int datetime) {
         this.datetime = datetime;
     }
 
