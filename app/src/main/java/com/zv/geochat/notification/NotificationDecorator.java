@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import com.zv.geochat.ChatActivity;
 import com.zv.geochat.R;
@@ -30,7 +31,10 @@ public class NotificationDecorator {
 
         // notification message
         try {
+            RemoteViews remoteViews = new RemoteViews("com.zv.geochat", R.layout.my_custom_layout);
 
+            remoteViews.setTextViewText(R.id.textView1,title);
+            remoteViews.setTextViewText(R.id.textView2,contentText);
 
             Notification noti = new Notification.Builder(context)
                     .setSmallIcon(android.R.drawable.ic_dialog_info)
@@ -38,7 +42,10 @@ public class NotificationDecorator {
                     .setContentText(contentText)
                     .setContentIntent(contentIntent)
                     .setAutoCancel(true)
+                    .setCustomContentView(remoteViews)
                     .build();
+
+
 
             noti.flags |= Notification.FLAG_AUTO_CANCEL;
             notificationMgr.notify(0, noti);
