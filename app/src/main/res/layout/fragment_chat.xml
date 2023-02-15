@@ -22,25 +22,19 @@
         android:weightSum="3">
 
         <Button
-            android:text="Join"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/btnJoinChat" />
+            android:text="@string/join"
+            android:id="@+id/btnJoinChat"
+            style="@style/ChatButtonStyle" />
 
         <Button
             android:text="Leave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/ChatButtonStyle"
             android:id="@+id/btnLeaveChat" />
 
 
         <Button
             android:text="Receive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/ChatButtonStyle"
             android:id="@+id/btnReceiveMessage" />
 
     </LinearLayout>
@@ -90,8 +84,7 @@
 
         <TextView
             android:id="@+id/txtChatLog"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            style="@style/ChatTextView" />
     </ScrollView>
 
 </RelativeLayout>
