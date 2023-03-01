@@ -65,7 +65,7 @@ public class NotificationDecorator {
                     intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         try {
-            RemoteViews remoteViews = new RemoteViews("com.zv.geochat", R.layout.my_custom_layout);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.my_custom_layout);
 
             remoteViews.setTextViewText(R.id.textView1,title);
             remoteViews.setTextViewText(R.id.textView2,contentText);
