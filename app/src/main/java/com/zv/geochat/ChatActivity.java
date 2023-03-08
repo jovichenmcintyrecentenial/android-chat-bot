@@ -2,13 +2,10 @@ package com.zv.geochat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.zv.geochat.service.ChatService;
 
@@ -52,7 +49,8 @@ public class ChatActivity extends AppCompatActivity {
             finish(); // return to login screen
             return true;
         } else if (id == R.id.action_map){
-            // TODO: open Map screen
+            Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.action_join_test){ // test only
             joinChat();
