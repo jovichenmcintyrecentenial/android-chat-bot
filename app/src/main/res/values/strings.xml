@@ -29,4 +29,16 @@
     <string name="action_map">Map</string>
     <string name="action_leave">Leave Chat</string>
 
+    <string-array name="chat_limits">
+        <item>2 Messages</item>
+        <item>5 Messages</item>
+        <item>15 Messages</item>
+    </string-array>
+
+    <string-array name="chat_limits_values">
+        <item>2</item>
+        <item>5</item>
+        <item>15</item>
+    </string-array>
+
 </resources>

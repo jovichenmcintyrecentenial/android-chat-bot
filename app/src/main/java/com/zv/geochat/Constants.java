@@ -7,6 +7,8 @@ public interface Constants {
     String PREF_KEY_SERVER_URI ="key_server_uri";
     String PREF_KEY_NOTIFICATIONS_NEW_MESSAGE ="key_notifications_new_message";
     String PREF_KEY_NOTIFICATIONS_NEW_MESSAGE_RINGTONE ="key_notifications_new_message_ringtone";
+
+    String PREF_KEY_CHAT_MESSAGE_LIMIT ="key_chat_message_limit";
     String PREF_KEY_NOTIFICATIONS_NEW_MESSAGE_VIBRATE ="key_notifications_new_message_vibrate";
 
     // broadcasts

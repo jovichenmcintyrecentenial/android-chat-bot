@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="key_chat_message_limit"
+        android:title="Message Limit"
+        android:entries="@array/chat_limits"
+        android:entryValues="@array/chat_limits_values"
+        android:defaultValue="Light"
+        android:summary="Select Limit" />
+</PreferenceScreen>
