@@ -1,5 +1,7 @@
 package com.zv.geochat.service;
 
+import static com.zv.geochat.Constants.PREF_KEY_CHAT_MESSAGE_LIMIT;
+
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
@@ -25,6 +27,8 @@ public class ChatService extends Service {
     public static final int CMD_SEND_MESSAGE = 30;
     public static final int CMD_RECEIVE_MESSAGE = 40;
     public static final String KEY_MESSAGE_TEXT = "message_text";
+
+    public static int currentSessionMessageCount  = 0;
 
     private NotificationManager notificationMgr;
     private PowerManager.WakeLock wakeLock;
@@ -102,10 +106,31 @@ public class ChatService extends Service {
             sendBroadcastNotConnected();
             stopSelf();
         } else if (command == CMD_SEND_MESSAGE) {
-            String messageText = (String) data.get(KEY_MESSAGE_TEXT);
-            notificationDecorator.displayExpandableNotification("Sending message...", messageText);
-            chatMessageStore.insert(new ChatMessage(myName, messageText));
-            sendBroadcastNewMessage(myName, messageText);
+
+
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+            int messageLimit = Integer.parseInt(sharedPreferences.getString(PREF_KEY_CHAT_MESSAGE_LIMIT,"-1"));
+            int currentMessageCount = currentSessionMessageCount;
+            boolean hasReachedLimit = messageLimit != -1 && currentMessageCount >= messageLimit;
+
+            if(!hasReachedLimit) {
+                String messageText = (String) data.get(KEY_MESSAGE_TEXT);
+                notificationDecorator.displayExpandableNotification("Sending message...", messageText);
+                chatMessageStore.insert(new ChatMessage(myName, messageText));
+                sendBroadcastNewMessage(myName, messageText);
+                currentMessageCount++;
+            }
+
+            if(hasReachedLimit){
+                sendBroadcastNotConnected();
+                sendBroadcastChatLimitReached(messageLimit);
+                stopSelf();
+            }
+
+
+
         } else if (command == CMD_RECEIVE_MESSAGE) {
             String testUser = "Test User";
             String testMessage = "Simulated Message";
@@ -165,6 +190,20 @@ public class ChatService extends Service {
         sendBroadcast(intent);
     }
 
+    private void sendBroadcastChatLimitReached(int messageLimit) {
+        Log.d(TAG, "->(+)<- sending broadcast: BROADCAST_CHAT_LIMIT_REACHED");
+        Intent intent = new Intent();
+        intent.setAction(Constants.BROADCAST_CHAT_LIMIT_REACHED);
+
+        Bundle data = new Bundle();
+        data.putString(Constants.CHAT_MESSAGE_LIMIT, Integer.toString(messageLimit));
+//        data.putString(Constants.CHAT_USER_NAME, userName);
+        intent.putExtras(data);
+
+        sendBroadcast(intent);
+    }
+
+
     private void sendBroadcastNewMessage(String userName, String message) {
         Log.d(TAG, "->(+)<- sending broadcast: BROADCAST_NEW_MESSAGE");
         Intent intent = new Intent();
@@ -176,6 +215,7 @@ public class ChatService extends Service {
         intent.putExtras(data);
 
         sendBroadcast(intent);
+        currentSessionMessageCount++;
     }
 
     private void sendBroadcastUserTyping(String userName) {

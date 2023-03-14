@@ -118,7 +118,15 @@ public class ChatActivityFragment extends Fragment {
                 int userCount = data.getInt(Constants.CHAT_USER_COUNT, 0);
                 ChatMessage chatMessage = new ChatMessage(userName, " left. Users: "+userCount, true);
                 displayMessage(chatMessage);
-            } else if (Constants.BROADCAST_NEW_MESSAGE.equals(action)) {
+            }
+            else if (Constants.BROADCAST_CHAT_LIMIT_REACHED.equals(action)) {
+                String messageLimit = data.getString(Constants.CHAT_MESSAGE_LIMIT);
+                String message = "Session closed after reaching the limit: %s messages"
+                        .replaceAll("%s", messageLimit);
+                ChatMessage chatMessage = new ChatMessage("", message, true);
+                displayMessage(chatMessage);
+            }
+            else if (Constants.BROADCAST_NEW_MESSAGE.equals(action)) {
                 String userName = data.getString(Constants.CHAT_USER_NAME);
                 String message = data.getString(Constants.CHAT_MESSAGE);
                 ChatMessage chatMessage = new ChatMessage(userName, message);
@@ -136,6 +144,7 @@ public class ChatActivityFragment extends Fragment {
         Log.d(TAG, "registering service state change receiver...");
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Constants.BROADCAST_NEW_MESSAGE);
+        intentFilter.addAction(Constants.BROADCAST_CHAT_LIMIT_REACHED);
         intentFilter.addAction(Constants.BROADCAST_USER_TYPING);
         intentFilter.addAction(Constants.BROADCAST_SERVER_CONNECTED);
         intentFilter.addAction(Constants.BROADCAST_SERVER_NOT_CONNECTED);

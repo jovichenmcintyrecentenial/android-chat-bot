@@ -65,7 +65,6 @@ public class ChatActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private void joinChat(){
         Bundle data = new Bundle();
         data.putInt(ChatService.CMD, ChatService.CMD_JOIN_CHAT);
@@ -73,7 +72,6 @@ public class ChatActivity extends AppCompatActivity {
         intent.putExtras(data);
         startService(intent);
     }
-
 
     private void leaveChat(){
         Bundle data = new Bundle();
