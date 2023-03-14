@@ -123,9 +123,10 @@ public class ChatService extends Service {
                 currentMessageCount++;
             }
 
-            if(hasReachedLimit){
-                sendBroadcastNotConnected();
+            if( messageLimit != -1 && currentMessageCount >= messageLimit){
+                sendBroadcastUserLeft(myName, 0);
                 sendBroadcastChatLimitReached(messageLimit);
+                sendBroadcastNotConnected();
                 stopSelf();
             }
 
