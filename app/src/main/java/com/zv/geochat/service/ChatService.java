@@ -98,6 +98,7 @@ public class ChatService extends Service {
         int command = data.getInt(CMD);
         Log.d(TAG, "-(<- received command data to service: command=" + command);
         if (command == CMD_JOIN_CHAT) {
+            currentSessionMessageCount = 0;
             notificationDecorator.displaySimpleNotification("Joining Chat...", "Connecting as User: " + myName);
             sendBroadcastConnected();
             sendBroadcastUserJoined(myName, 1);
