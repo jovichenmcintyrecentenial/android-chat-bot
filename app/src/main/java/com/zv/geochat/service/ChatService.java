@@ -44,6 +44,7 @@ public class ChatService extends Service {
     public void onCreate() {
         Log.v(TAG, "onCreate()");
         super.onCreate();
+        currentSessionMessageCount = 0;
         notificationMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationDecorator = new NotificationDecorator(this, notificationMgr);
         chatMessageStore = new ChatMessageStore(this);
@@ -124,10 +125,11 @@ public class ChatService extends Service {
             }
 
             if( messageLimit != -1 && currentMessageCount >= messageLimit){
+                if(!hasReachedLimit){
+                    notificationDecorator.displayExpandableNotification("Limit Reached", "Chat Session Closed");
+                }
                 sendBroadcastUserLeft(myName, 0);
                 sendBroadcastChatLimitReached(messageLimit);
-                sendBroadcastNotConnected();
-                stopSelf();
             }
 
 
